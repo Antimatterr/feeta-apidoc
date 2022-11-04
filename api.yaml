@@ -1,0 +1,174 @@
+swagger: "2.0"
+info:
+  title: Feeta api
+  version: 1.0
+  contact:
+    email: sidhant@thelattice.in
+  server:
+    url: "http://localhost:5000"
+    description: "DEVELOPMENT SERVER"
+    url: "http://157.245.100.190"
+    description: "PRODUCTION SERVER"
+
+schemes: [http, https]
+
+# securityDefinitions:
+  # BasicAuth:
+  #   type: basic
+  # JWT:
+  #   description:
+  #   type: apiKey
+  #   name: Authorization
+  #   in: header
+
+host: localhost:5000
+basePath: /api
+paths:
+  
+  /register-snapshot: 
+    post:
+      summary: create snapshot
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters: 
+        - in: body
+          name: snapshot
+          schema:
+            type: object
+            properties:
+              snapshot_date: 
+                type: string
+              snapshot_url:
+                type: string
+              
+        
+      responses:
+        201:
+          description: project snapshot created
+          schema:
+            type: object
+            properties: 
+              status: 
+                type: integer
+              project_id:
+                type: string
+              message:
+                type: string
+
+        400:
+          description: validation error
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+              message:
+                type: string
+        500:
+          description: Internal server error
+          schema:
+            type: object
+            properties: 
+              status: 
+                type: integer
+              message:
+                type: string
+  /add-note: 
+    post:
+      summary: add notes
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters: 
+        - in: body
+          name: notes
+          schema:
+            type: object
+            properties:
+              project_id:
+                type: string
+              note: 
+                type: string
+              
+              
+        
+      responses:
+        201:
+          description: project snapshot created
+          schema:
+            type: object
+            properties: 
+              status: 
+                type: integer
+              message:
+                type: string
+
+        400:
+          description: validation error
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+              message:
+                type: string
+        500:
+          description: Internal server error
+          schema:
+            type: object
+            properties: 
+              status: 
+                type: integer
+              message:
+                type: string
+  /get-notes/{id}:
+    get:
+      summary: return project notes
+      # description: This provides various details about the hospital like patient and psychologist details in particular hospital. Use hospitalid as 3 for testing purpose
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: The project id whos details are needed to be fetched 
+      responses:
+        200:
+          description: notes
+          schema: 
+            type: object
+            properties:
+              status:
+                type: integer
+              notes:
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    project_id:
+                      type: string
+                    note:
+                      type: string
+                    date_created: 
+                      type: string
+        400:
+          description: Bad request. project id required
+          schema:
+            type: object
+            properties: 
+              status: 
+                type: integer
+              message:
+                type: string
+        500:
+          description: Internal server error
+          schema:
+            type: object
+            properties: 
+              status: 
+                type: integer
+              message:
+                type: string

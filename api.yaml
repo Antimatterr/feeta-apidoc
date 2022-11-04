@@ -38,10 +38,22 @@ paths:
           schema:
             type: object
             properties:
+              status:
+                type: integer
+              project_id:
+                type: string
               snapshot_date: 
                 type: string
               snapshot_url:
                 type: string
+              message:
+                type: string
+            example:
+              status: 1,
+              project_id: "DkXkCTcLRqx3XRBuXm9t"
+              snapshot_date: "2022-10-24"
+              snapshot_url: "https://app.instagantt.com/shared/6346845d8660681d1c7ba16d"
+              message: "snapshot created"
               
         
       responses:
@@ -92,6 +104,9 @@ paths:
                 type: string
               note: 
                 type: string
+            example:
+              project_id: "DkXkCTcLRqx3XRBuXm9t"
+              note: "testing completed"
               
               
         
@@ -135,6 +150,8 @@ paths:
             type: string
           required: true
           description: The project id who's notes are needed to be fetched 
+
+
       responses:
         200:
           description: notes

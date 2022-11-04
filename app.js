@@ -1,5 +1,6 @@
 const express = require("express");
 // const apiDataInitialization = require("./scrapeData");
+const routes = require("./routes")
 
 const swaggerUI = require('swagger-ui-express');
 const YAML = require('yamljs')

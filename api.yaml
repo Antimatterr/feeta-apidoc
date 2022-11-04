@@ -134,7 +134,7 @@ paths:
           schema:
             type: string
           required: true
-          description: The project id whos details are needed to be fetched 
+          description: The project id who's notes are needed to be fetched 
       responses:
         200:
           description: notes

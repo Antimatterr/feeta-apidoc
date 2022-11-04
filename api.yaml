@@ -38,22 +38,10 @@ paths:
           schema:
             type: object
             properties:
-              status:
-                type: integer
-              project_id:
-                type: string
               snapshot_date: 
                 type: string
               snapshot_url:
                 type: string
-              message:
-                type: string
-            example:
-              status: 1,
-              project_id: "DkXkCTcLRqx3XRBuXm9t"
-              snapshot_date: "2022-10-24"
-              snapshot_url: "https://app.instagantt.com/shared/6346845d8660681d1c7ba16d"
-              message: "snapshot created"
               
         
       responses:
@@ -65,6 +53,10 @@ paths:
               status: 
                 type: integer
               project_id:
+                type: string
+              snapshot_date:
+                type: string
+              snapshot_url:
                 type: string
               message:
                 type: string
@@ -104,9 +96,6 @@ paths:
                 type: string
               note: 
                 type: string
-            example:
-              project_id: "DkXkCTcLRqx3XRBuXm9t"
-              note: "testing completed"
               
               
         
@@ -149,9 +138,7 @@ paths:
           schema:
             type: string
           required: true
-          description: The project id who's notes are needed to be fetched 
-
-
+          description: The project id whos details are needed to be fetched 
       responses:
         200:
           description: notes
@@ -189,3 +176,86 @@ paths:
                 type: integer
               message:
                 type: string
+  /project-summary/{id}:
+    get:
+      summary: return project summary
+      description: This provides various details about project
+      parameters:
+        - in: path
+          name: projectID
+          schema:
+            type: integer
+          required: true
+          description: project details
+      responses:
+        200:
+          schema:
+            type: object
+            properties:
+              total_progress:
+                type: integer
+              time_elapsed:
+                type: integer
+              buffer_used: 
+                type: integer
+              gantt_snapshot_url:
+                type: string
+              date_of_snapshot:
+                type: string
+              project_id:
+                type: string
+              expected_end:
+                type: object
+                properties:
+                  days_left: 
+                    type: integer
+                  end_date:
+                    type: string
+              milestone_tasks:
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    id:
+                      type: number
+                    name:
+                      type: string
+                    deadline: 
+                      type: string
+                    delayed_status:
+                      type: string
+              delayed_tasks:
+                type: array
+                items: 
+                  type: object
+                  properties: 
+                    id:
+                      type: number
+                    delay_days:
+                      type: string
+                    task_name: 
+                      type: string
+                    deadline:
+                      type: string
+                    assigned_to:
+                      typee: array
+        404:
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+              message:
+                type: string
+        500:
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+              message:
+                type: string
+
+
+
+                      

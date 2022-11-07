@@ -211,6 +211,16 @@ paths:
                     type: integer
                   end_date:
                     type: string
+              del_goaEnd:
+                type: integer
+              del_nextMilestone:
+                type: integer
+              del_bufferLastWeek:
+                type: integer
+              del_totRework:
+                type: integer
+              del_reworkLastWeek:
+                type: integer
               milestone_tasks:
                 type: array
                 items: 

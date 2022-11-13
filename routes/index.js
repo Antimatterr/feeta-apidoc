@@ -6,5 +6,5 @@ const express = require('express');
 const router = express.Router();
 
 
-
+router.get('/project-summary', projectSummaryController.projectSummary)
 module.exports = router
